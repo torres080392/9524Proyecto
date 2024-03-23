@@ -26,6 +26,4 @@
     <livewire:buscador-equipos />
 
 
-
-    @include('layouts.footer')
     @livewireScripts

@@ -82,7 +82,6 @@ class EquipoLivewire extends Component
 
     //funciones para el modal de actualizacion
     public $modalActualizar = false;
-    public $idUsu;
     public $equipoSeleccionado;
 
 
