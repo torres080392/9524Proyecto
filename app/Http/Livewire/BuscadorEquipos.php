@@ -24,15 +24,20 @@ class BuscadorEquipos extends Component
     public $tipo_id = '';
     public $actualizando = '';
     public $modalMensaje = false; //modal de mensaje
-     //funciones para el modal de eliminacion
-     public $modalAbierto = false;
-     public $usuarioId;
- 
+    //funciones para el modal de eliminacion
+    public $modalAbierto = false;
+    public $usuarioId;
 
+
+    //funcion para buscar equipos
     public function searchProduct()
     {
-        $this->results = Equipo::where('serial', 'like', '%' . $this->search . '%')->take(4)->get();
-        $this->showlist = true;
+        if ($this->search == true) {
+            $this->results = Equipo::where('serial', 'like', '%' . $this->search . '%')->take(5)->get();
+            $this->showlist = true;
+        }else {
+            $this->showlist = false;
+        }
     }
 
     public function getProduct($id)
@@ -50,8 +55,8 @@ class BuscadorEquipos extends Component
         ]);
     }
 
-    
-  
+
+
 
     public function eliminarUsuario($id)
     {
@@ -63,7 +68,7 @@ class BuscadorEquipos extends Component
         //cerrar modal despues de la accion
         $this->cerrarModal();
         //modal de mensaje
-    
+
         // Mensaje de éxito
         session()->flash('message', 'Equipo eliminado exitosamente.');
         $this->reset();
@@ -82,79 +87,79 @@ class BuscadorEquipos extends Component
     }
 
 
-     //funciones para el modal de actualizacion
-     public $modalActualizar = false;
-     public $equipoSeleccionado;
- 
- 
-     public function abrirModalAct($id)
-     {
-         $this->equipoSeleccionado = Equipo::findOrFail($id);
-         $this->modalActualizar = true;
-         $this->usuario_id = $this->equipoSeleccionado->usuario_id;
-         $this->condicion_id = $this->equipoSeleccionado->condicion_id;
-         $this->tipo_id = $this->equipoSeleccionado->tipo_id;
-         $this->nombre = $this->equipoSeleccionado->nombre;
-         $this->serial = $this->equipoSeleccionado->serial;
-         $this->compra = $this->equipoSeleccionado->compra;
-         $this->garatiaInicial = $this->equipoSeleccionado->garatiaInicial;
-         $this->garatiaFinal = $this->equipoSeleccionado->garatiaFinal;
-     }
- 
- 
- 
-     public function update($id)
-     {
- 
-         // Obtener el usuario que se está actualizando
-         $usuario = Equipo::findOrFail($id);
- 
-         // Actualizar los campos del usuario basado en los datos del formulario
-         $usuario->usuario_id = $this->usuario_id;
-         $usuario->condicion_id = $this->condicion_id;
-         $usuario->tipo_id = $this->tipo_id;
-         $usuario->nombre = $this->nombre;
-         $usuario->serial = $this->serial;
-         $usuario->compra = $this->compra;
-         $usuario->garatiaInicial = $this->garatiaInicial;
-         $usuario->garatiaFinal = $this->garatiaFinal;
- 
- 
-         // Actualiza otros campos aquí si es necesario
- 
-         // Guardar los cambios en la base de datos
-         $usuario->save();
- 
-         // Cerrar el modal de actualización
-         $this->cerrarModalAct();
- 
-         // Limpiar los campos del formulario
-         $this->reset();
-         //modal de mensaje
-         $this->modalMensaje = true;
-         // Mostrar un mensaje de éxito
-         session()->flash('message', 'Equipo actualizado exitosamente.');
-     }
- 
-     //cierra el modal 
-     public function cerrarModalAct()
-     {
-         $this->modalActualizar = false;
-     }
- 
- 
-     //modal de mensaje
-     public function cerrarModalMensaje()
-     {
-         $this->modalMensaje = false;
-     }
-   
+    //funciones para el modal de actualizacion
+    public $modalActualizar = false;
+    public $equipoSeleccionado;
+
+
+    public function abrirModalAct($id)
+    {
+        $this->equipoSeleccionado = Equipo::findOrFail($id);
+        $this->modalActualizar = true;
+        $this->usuario_id = $this->equipoSeleccionado->usuario_id;
+        $this->condicion_id = $this->equipoSeleccionado->condicion_id;
+        $this->tipo_id = $this->equipoSeleccionado->tipo_id;
+        $this->nombre = $this->equipoSeleccionado->nombre;
+        $this->serial = $this->equipoSeleccionado->serial;
+        $this->compra = $this->equipoSeleccionado->compra;
+        $this->garatiaInicial = $this->equipoSeleccionado->garatiaInicial;
+        $this->garatiaFinal = $this->equipoSeleccionado->garatiaFinal;
+    }
+
+
+
+    public function update($id)
+    {
+
+        // Obtener el usuario que se está actualizando
+        $usuario = Equipo::findOrFail($id);
+
+        // Actualizar los campos del usuario basado en los datos del formulario
+        $usuario->usuario_id = $this->usuario_id;
+        $usuario->condicion_id = $this->condicion_id;
+        $usuario->tipo_id = $this->tipo_id;
+        $usuario->nombre = $this->nombre;
+        $usuario->serial = $this->serial;
+        $usuario->compra = $this->compra;
+        $usuario->garatiaInicial = $this->garatiaInicial;
+        $usuario->garatiaFinal = $this->garatiaFinal;
+
+
+        // Actualiza otros campos aquí si es necesario
+
+        // Guardar los cambios en la base de datos
+        $usuario->save();
+
+        // Cerrar el modal de actualización
+        $this->cerrarModalAct();
+
+        // Limpiar los campos del formulario
+        $this->reset();
+        //modal de mensaje
+        $this->modalMensaje = true;
+        // Mostrar un mensaje de éxito
+        session()->flash('message', 'Equipo actualizado exitosamente.');
+    }
+
+    //cierra el modal 
+    public function cerrarModalAct()
+    {
+        $this->modalActualizar = false;
+    }
+
+
+    //modal de mensaje
+    public function cerrarModalMensaje()
+    {
+        $this->modalMensaje = false;
+    }
+
     public function render()
     {
         $tipos =  Tipo::all();
         $condicions =  Condicion::all();
         $usuarios = Usuario::all();
         $equipos =  Equipo::all();
-        return view('livewire.buscador-equipos',compact('tipos','condicions','usuarios','equipos'));
+        return view('livewire.buscador-equipos', compact('tipos', 'condicions', 'usuarios', 'equipos'));
     }
 }

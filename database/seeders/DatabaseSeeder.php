@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Equipo;
+use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 
@@ -17,13 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        Usuario::factory()->count(0)->create();
-        Equipo::factory()->count(100)->create();
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+      //  Usuario::factory()->count(0)->create();
+      //  Equipo::factory()->count(100)->create();
+        User::factory()->count(20)->create();
+      
     }
 
     public function down()

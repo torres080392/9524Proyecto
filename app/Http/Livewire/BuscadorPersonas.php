@@ -33,12 +33,16 @@ class BuscadorPersonas extends Component
     public $modalMensajeUsuario = false;
     public $modalAbierto = false;
     public $usuarioId;
- //funcion  para buscar usuarios
+
+    //funcion  para buscar usuarios
     public function searchProduct()
     {
-        $this->results = Usuario::where('nombre', 'like', '%' . $this->search . '%')->take(5)->get();
-        $this->showlist = true;
-        session()->flash('message', 'EL resultado muestra los 5 registros mas coincidentes');
+        if ($this->search == true) {
+            $this->results = Usuario::where('nombre', 'like', '%' . $this->search . '%')->take(5)->get();
+            $this->showlist = true;
+        } else {
+            $this->showlist = false;
+        }
     }
 
     public function getProduct($id)

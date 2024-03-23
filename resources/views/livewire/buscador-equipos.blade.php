@@ -16,7 +16,7 @@
                                     Id
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Nombre
+                                    Asignado:
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">
                                     Serial
@@ -46,7 +46,11 @@
                                             {{ $result->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
-                                            {{ $result->nombre }}
+                                            
+                                            {{ $result->usuario ? $result->usuario->nombre : 'Equino no asignado' }}
+                                           
+                                          
+                                           
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $result->serial }}
@@ -67,7 +71,7 @@
                                             <button wire:click="abrirModal({{ $result->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach   
                             @endif
                         </tbody>
                     </table>

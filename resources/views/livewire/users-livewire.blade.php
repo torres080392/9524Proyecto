@@ -1,6 +1,6 @@
 <div class="container mt-0">
     <div class="row align-items-start"> <!-- Utilizando align-items-start para alinear los elementos en la parte superior -->
-        <div class="col-lg-6">
+        <div class="col-lg-5">
         
             <x-guest-layout>
                 <x-authentication-card>
@@ -52,7 +52,7 @@
                 </x-authentication-card>
             </x-guest-layout>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <h4>Listado de usuarios del sistema</h4>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -74,7 +74,7 @@
                                 <td>
                                     <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning">Editar</button>
                                     <button wire:click="update({{ $user->id }})" class="btn btn-sm btn-warning">Actualizar</button>
-                                    <button wire:click="delete({{ $user->id }})" class="btn btn-sm btn-dark">Eliminar</button>
+                                    <button wire:click="abrirModal({{ $user->id }})" class="btn btn-sm btn-dark">Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -86,4 +86,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Livewire Component View (tu-componente.blade.php) -->
+<div>
+    <button wire:click="abrirModal">Eliminar Usuario</button>
+
+    @if ($modalAbierto)
+    @foreach ($users as $user)
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar Eliminación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cerrarModal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Por favor, ingrese su contraseña para confirmar la eliminación del usuario:</p>
+                        <input type="password" wire:model="contrasena">
+                    </div>
+                    <div>
+                        @if (session()->has('message'))
+                            <div class="alert alert-success" role="alert">
+                                <span class="block sm:inline">{{ session('message') }}</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="cerrarModal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" wire:click="eliminarUsuario({{$user->id}})">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    @endif
+</div>
+
 </div>

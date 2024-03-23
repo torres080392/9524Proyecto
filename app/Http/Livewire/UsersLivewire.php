@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -66,6 +67,43 @@ class UsersLivewire extends Component
         $this->reset();
         session()->flash('message', 'Usuario actualizado exitoxamente .');
         
+    }
+
+  //codigo del modal para eliminar  un usuario
+    public $modalAbierto = false;
+    public $contrasena = '';
+    public $mensajeError = '';
+    public $UsuarioEliminar;
+
+    public function abrirModal($id)
+    {
+        $this->modalAbierto = true;
+        $this->UsuarioEliminar=$id;
+    }
+
+    public function cerrarModal()
+    {
+        $this->modalAbierto = false;
+    }
+
+    public function eliminarUsuario()
+    {
+           // Obtener el usuario autenticado
+           $user = Auth::user();
+
+           // Verificar si la contraseña es correcta
+           if (password_verify($this->contrasena, $user->password)) {
+               // Eliminar el usuario
+               User::findOrFail($this->UsuarioEliminar)->delete();
+   
+               // Cerrar el modal después de eliminar el usuario
+               $this->cerrarModal();
+               session()->flash('message', 'Usuario eliminado exitoxamente .');
+           } else {
+               // Mostrar un mensaje de error si la contraseña es incorrecta
+               
+               session()->flash('message', 'Contraseña incorrecta .');
+           }
     }
 
 
