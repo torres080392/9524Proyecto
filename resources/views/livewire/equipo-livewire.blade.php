@@ -1,14 +1,7 @@
 
 <div class="container-fluid mx-auto p-0">
     <div class="d-flex flex-wrap">
-        <div class="w-50 p-4">
-            <div>
-                @if (session()->has('message'))
-                    <div class="alert alert-success" role="alert">
-                        <span class="block sm:inline">{{ session('message') }}</span>
-                    </div>
-                @endif
-            </div>
+        <div class="w-50 p-4">.
             <form wire:submit.prevent="crearEquipo" enctype="multipart/form-data" class="space-y-3">
                 <!-- Tu formulario aquí -->
                 <h4 class="text-xl font-bold">En este formulario podrá asignarle un equipo a una persona</h4>
@@ -284,5 +277,31 @@
     </div>
 </div>
 @endif
+
+     <!-- Modal de mensajes -->
+
+     @if ($modalMensaje)
+     <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title">Mensaje de éxito</h5>
+                 </div>
+                 <div class="modal-body">
+                     <div>
+                         @if (session()->has('message'))
+                             <div class="btn btn-sm btn-warning" role="alert">
+                                 {{ session('message') }}
+                             </div>
+                         @endif
+                     </div>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click="cerrarModalMensaje">Cerrar</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ @endif
     
 </div>

@@ -21,6 +21,7 @@ class EquipoLivewire extends Component
     public $condicion_id = '';
     public $tipo_id = '';
     public $actualizando = '';
+    public $modalMensaje = false; //modal de mensaje
 
     public function crearEquipo()
     {
@@ -40,6 +41,8 @@ class EquipoLivewire extends Component
 
         // Limpiar los campos después de guardar
         $this->reset();
+        //modal de mensaje
+        $this->modalMensaje = true;
         session()->flash('message', 'Usuario creado exitoxamente.');
     }
 
@@ -54,9 +57,10 @@ class EquipoLivewire extends Component
 
         // Eliminar el usuario de la base de datos
         $usuario->delete();
-
+        //cerrar modal despues de la accion
         $this->cerrarModal();
-
+        //modal de mensaje
+        $this->modalMensaje = true;
         // Mensaje de éxito
         session()->flash('message', 'Equipo eliminado exitosamente.');
         $this->reset();
@@ -85,67 +89,70 @@ class EquipoLivewire extends Component
     {
         $this->equipoSeleccionado = Equipo::findOrFail($id);
         $this->modalActualizar = true;
-     
-    
-         $this->usuario_id = $this->equipoSeleccionado->usuario_id;
-         $this->condicion_id = $this->equipoSeleccionado->condicion_id;
-         $this->tipo_id = $this->equipoSeleccionado->tipo_id;
-         $this->nombre = $this->equipoSeleccionado->nombre;
-         $this->serial = $this->equipoSeleccionado->serial;
-         $this->compra = $this->equipoSeleccionado->compra;
-         $this->garatiaInicial = $this->equipoSeleccionado->garatiaInicial;
-         $this->garatiaFinal = $this->equipoSeleccionado->garatiaFinal;
-        
-       
+
+
+        $this->usuario_id = $this->equipoSeleccionado->usuario_id;
+        $this->condicion_id = $this->equipoSeleccionado->condicion_id;
+        $this->tipo_id = $this->equipoSeleccionado->tipo_id;
+        $this->nombre = $this->equipoSeleccionado->nombre;
+        $this->serial = $this->equipoSeleccionado->serial;
+        $this->compra = $this->equipoSeleccionado->compra;
+        $this->garatiaInicial = $this->equipoSeleccionado->garatiaInicial;
+        $this->garatiaFinal = $this->equipoSeleccionado->garatiaFinal;
     }
 
-  
+
 
     public function update($id)
-{
+    {
 
-    // Obtener el usuario que se está actualizando
-    $usuario = Equipo::findOrFail($id);
+        // Obtener el usuario que se está actualizando
+        $usuario = Equipo::findOrFail($id);
 
-    // Actualizar los campos del usuario basado en los datos del formulario
-    $usuario->usuario_id = $this->usuario_id;
-    $usuario->condicion_id = $this->condicion_id;
-    $usuario->tipo_id = $this->tipo_id;
-    $usuario->nombre = $this->nombre;
-    $usuario->serial = $this->serial;
-    $usuario->compra = $this->compra;
-    $usuario->garatiaInicial = $this->garatiaInicial;
-    $usuario->garatiaFinal = $this->garatiaFinal;
-  
-   
-    // Actualiza otros campos aquí si es necesario
-
-    // Guardar los cambios en la base de datos
-    $usuario->save();
-
-    // Cerrar el modal de actualización
-    $this->cerrarModalAct();
-
-    // Limpiar los campos del formulario
-    $this->reset();
-
-    // Mostrar un mensaje de éxito
-    session()->flash('message', 'Equipo actualizado exitosamente.');
-}
+        // Actualizar los campos del usuario basado en los datos del formulario
+        $usuario->usuario_id = $this->usuario_id;
+        $usuario->condicion_id = $this->condicion_id;
+        $usuario->tipo_id = $this->tipo_id;
+        $usuario->nombre = $this->nombre;
+        $usuario->serial = $this->serial;
+        $usuario->compra = $this->compra;
+        $usuario->garatiaInicial = $this->garatiaInicial;
+        $usuario->garatiaFinal = $this->garatiaFinal;
 
 
+        // Actualiza otros campos aquí si es necesario
+
+        // Guardar los cambios en la base de datos
+        $usuario->save();
+
+        // Cerrar el modal de actualización
+        $this->cerrarModalAct();
+
+        // Limpiar los campos del formulario
+        $this->reset();
+        //modal de mensaje
+        $this->modalMensaje = true;
+        // Mostrar un mensaje de éxito
+        session()->flash('message', 'Equipo actualizado exitosamente.');
+    }
+
+    //cierra el modal 
     public function cerrarModalAct()
     {
         $this->modalActualizar = false;
     }
 
 
+    //modal de mensaje
+    public function cerrarModalMensaje()
+    {
+        $this->modalMensaje = false;
+    }
 
 
 
 
-
-
+    //muestra la vista y carga los datos de los modelos 
     public function render()
 
     {

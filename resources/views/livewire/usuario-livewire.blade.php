@@ -1,12 +1,5 @@
 <div class="container mt-0">
-    <div>
-        @if (session()->has('message'))
-            <div class="alert alert-success" role="alert">
-                {{ session('message') }}
-            </div>
-        @endif
-    </div>
-
+    
     <div class="row">
         <!-- Formulario -->
         <div class="col-md-6 mb-3">
@@ -240,7 +233,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="direccion"
-                                    class="form-label">Teléfono:</label>
+                                    class="form-label">Direccion:</label>
                                 <input wire:model="direccion" value="{{ $usuarioSeleccionado->direccion }}" type="text" id="direccion" name="direccion"
                                     class="form-control" required>
                                 @error('direccion')
@@ -294,4 +287,31 @@
             </div>
         </div>
         @endif
+
+        <!-- Modal de mensajes -->
+
+        @if ($modalMensaje)
+    <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje de éxito</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        @if (session()->has('message'))
+                            <div class="btn btn-sm btn-warning" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click="cerrarModalMensaje">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
     </div>

@@ -21,12 +21,14 @@ class UsuarioLivewire extends Component
     public $cargo_id = '';
     public $area_id = '';
     public $estado_id = '';
-    public $actualizando='';
-    
+    public $actualizando = '';
+    public $modalMensaje = false; //modal de mensaje
+    public $modalAbierto = false; //modal de actualizacion
+    public $usuarioId;
+
     public function crearUsuario()
     {
         // Aquí puedes agregar la lógica para guardar los datos en la base de datos
-        //Por ejemplo:
         Usuario::create([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
@@ -41,44 +43,47 @@ class UsuarioLivewire extends Component
 
         // Limpiar los campos después de guardar
         $this->reset();
+        //modal de mensaje
+        $this->modalMensaje = true;
+        //mensaje que se muestra
         session()->flash('message', 'Usuario creado exitoxamente.');
     }
 
 
-  
 
- 
 
-  
-   //funciones para el modal de eliminacion
-   public $modalAbierto = false;
-   public $usuarioId;
-   
-   public function eliminarUsuario($id)
-{
-    // Buscar el usuario por su ID
-    $usuario = Usuario::findOrFail($id);
-    
-    // Eliminar el usuario de la base de datos
-    $usuario->delete();
 
-    $this->cerrarModal();
-    
-    // Mensaje de éxito
-    session()->flash('message', 'Usuario eliminado exitosamente.');
-    $this->reset();
-}
 
-   public function abrirModal($id)
-   {
-    $this->usuarioId = Usuario::findOrFail($id);
-       $this->modalAbierto = true;
-   }
 
-   public function cerrarModal()
-   {
-       $this->modalAbierto = false;
-   }
+    //funciones para el modal de eliminacion
+
+    public function eliminarUsuario($id) //traemos el usuario por parametro
+    {
+        // Buscar el usuario por su ID
+        $usuario = Usuario::findOrFail($id);
+
+        // Eliminar el usuario de la base de datos
+        $usuario->delete();
+
+        $this->cerrarModal();
+
+        // Mensaje de éxito
+        session()->flash('message', 'Usuario eliminado exitosamente.');
+        $this->reset();
+        //modal de mensaje 
+        $this->modalMensaje = true;
+    }
+
+    public function abrirModal($id)
+    {
+        $this->usuarioId = Usuario::findOrFail($id);
+        $this->modalAbierto = true;
+    }
+
+    public function cerrarModal()
+    {
+        $this->modalAbierto = false;
+    }
 
 
 
@@ -101,41 +106,42 @@ class UsuarioLivewire extends Component
         $this->area_id = $this->usuarioSeleccionado->area_id;
         $this->estado_id = $this->usuarioSeleccionado->estado_id;
         $this->cargo_id = $this->usuarioSeleccionado->cargo_id;
-       
     }
 
-  
+
 
     public function update($id)
-{
+    {
 
-    // Obtener el usuario que se está actualizando
-    $usuario = Usuario::findOrFail($id);
+        // Obtener el usuario que se está actualizando
+        $usuario = Usuario::findOrFail($id);
 
-    // Actualizar los campos del usuario basado en los datos del formulario
-    $usuario->nombre = $this->nombre;
-    $usuario->apellido = $this->apellido;
-    $usuario->documento = $this->documento;
-    $usuario->telefono = $this->telefono;
-    $usuario->correo = $this->correo;
-    $usuario->direccion = $this->direccion;
-    $usuario->cargo_id = $this->cargo_id;
-    $usuario->area_id = $this->area_id;
-    $usuario->estado_id = $this->estado_id;
-    // Actualiza otros campos aquí si es necesario
+        // Actualizar los campos del usuario basado en los datos del formulario
+        $usuario->nombre = $this->nombre;
+        $usuario->apellido = $this->apellido;
+        $usuario->documento = $this->documento;
+        $usuario->telefono = $this->telefono;
+        $usuario->correo = $this->correo;
+        $usuario->direccion = $this->direccion;
+        $usuario->cargo_id = $this->cargo_id;
+        $usuario->area_id = $this->area_id;
+        $usuario->estado_id = $this->estado_id;
+        // Actualiza otros campos aquí si es necesario
 
-    // Guardar los cambios en la base de datos
-    $usuario->save();
+        // Guardar los cambios en la base de datos
+        $usuario->save();
 
-    // Cerrar el modal de actualización
-    $this->cerrarModalAct();
+        // Cerrar el modal de actualización
+        $this->cerrarModalAct();
 
-    // Limpiar los campos del formulario
-    $this->reset();
+        // Limpiar los campos del formulario
+        $this->reset();
 
-    // Mostrar un mensaje de éxito
-    session()->flash('message', 'Usuario actualizado exitosamente.');
-}
+        //modal de mensaje
+        $this->modalMensaje = true;
+        // Mostrar un mensaje de éxito
+        session()->flash('message', 'Usuario actualizado exitosamente.');
+    }
 
 
     public function cerrarModalAct()
@@ -144,8 +150,16 @@ class UsuarioLivewire extends Component
         $this->reset();
     }
 
+    //Modal de mensaje 
 
-  
+    public function cerrarModalMensaje()
+    {
+        $this->modalMensaje = false;
+    }
+
+
+
+
 
 
 
@@ -157,6 +171,6 @@ class UsuarioLivewire extends Component
         $estados = Estado::all();
         $usuarios = Usuario::simplePaginate(10);
 
-        return view('livewire.usuario-livewire', compact('cargos', 'areas', 'estados', 'usuarios','totalPersonas'));;
+        return view('livewire.usuario-livewire', compact('cargos', 'areas', 'estados', 'usuarios', 'totalPersonas'));;
     }
 }

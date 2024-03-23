@@ -156,16 +156,6 @@ class BuscadorPersonas extends Component
         $this->modalActualizar = false;
     }
 
-
-
-
-
-
-
-
-
-
-
     public function render()
     {
         $cargos = Cargo::all();
