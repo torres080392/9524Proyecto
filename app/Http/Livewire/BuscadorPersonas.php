@@ -15,6 +15,7 @@ use Livewire\WithPagination;
 class BuscadorPersonas extends Component
 {
     use WithPagination;
+    //variables que vamos a usar
     public $search = '';
     public $results = [];
     public $showlist = false;
@@ -29,7 +30,10 @@ class BuscadorPersonas extends Component
     public $area_id = '';
     public $estado_id = '';
     public $actualizando = '';
-
+    public $modalMensajeUsuario = false;
+    public $modalAbierto = false;
+    public $usuarioId;
+ //funcion  para buscar usuarios
     public function searchProduct()
     {
         $this->results = Usuario::where('nombre', 'like', '%' . $this->search . '%')->take(5)->get();
@@ -64,8 +68,7 @@ class BuscadorPersonas extends Component
 
 
     //funciones para el modal de eliminacion
-    public $modalAbierto = false;
-    public $usuarioId;
+
 
     public function eliminarUsuario($id)
     {
@@ -78,8 +81,11 @@ class BuscadorPersonas extends Component
         $this->cerrarModal();
 
         // Mensaje de éxito
-        session()->flash('message', 'Equipo eliminado exitosamente.');
+
+        session()->flash('message', 'Usuario eliminado exitosamente.');
         $this->reset();
+        //modal de  mensaje
+        $this->modalMensajeUsuario = true;
     }
 
     public function abrirModal($id)
@@ -146,6 +152,8 @@ class BuscadorPersonas extends Component
         // Limpiar los campos del formulario
         $this->reset();
 
+        $this->modalMensajeUsuario = true;
+
         // Mostrar un mensaje de éxito
         session()->flash('message', 'Usuario actualizado exitosamente.');
     }
@@ -155,6 +163,13 @@ class BuscadorPersonas extends Component
     {
         $this->modalActualizar = false;
     }
+
+    public function cerrarModalMensaje()
+    {
+        $this->modalMensajeUsuario = false;
+    }
+
+
 
     public function render()
     {

@@ -60,10 +60,11 @@ class EquipoLivewire extends Component
         //cerrar modal despues de la accion
         $this->cerrarModal();
         //modal de mensaje
-        $this->modalMensaje = true;
+    
         // Mensaje de éxito
         session()->flash('message', 'Equipo eliminado exitosamente.');
         $this->reset();
+        $this->modalMensaje = true;
     }
 
     public function abrirModal($id)

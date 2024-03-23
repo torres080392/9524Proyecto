@@ -1,11 +1,5 @@
 <div class="container mx-auto p-6">
-    <div>
-        @if (session()->has('message'))
-            <div class="alert alert-success" role="alert">
-                <span class="block sm:inline">{{ session('message') }}</span>
-            </div>
-        @endif
-    </div>
+
     <div class="row">
         <div class="form-group col-md-10">
             <label for="search">Buscar</label>
@@ -240,6 +234,33 @@
     </div>
 </div>
 @endif
+
+
+     <!-- Modal de mensajes -->
+
+     @if ($modalMensajeUsuario)
+     <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title">Mensaje de éxito</h5>
+                 </div>
+                 <div class="modal-body">
+                     <div>
+                         @if (session()->has('message'))
+                             <div class="btn btn-sm btn-warning" role="alert">
+                                 {{ session('message') }}
+                             </div>
+                         @endif
+                     </div>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click="cerrarModalMensaje">Cerrar</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ @endif
 
 </div>
 
