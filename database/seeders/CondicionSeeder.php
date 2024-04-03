@@ -12,11 +12,11 @@ class CondicionSeeder extends Seeder
     public function run()
     {
         Condicion::create([
-            'id'=> 1,
+       
             'condicion' => 'Nuevo',    
         ]);
         Condicion::create([
-            'id'=> 2,
+        
             'condicion' => 'Usado',    
         ]);
       

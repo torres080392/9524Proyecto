@@ -12,6 +12,9 @@ use Livewire\WithPagination;
 class EquipoLivewire extends Component
 {
     use WithPagination;
+    public $search = '';
+    public $results = [];
+    public $showlist = false;
     public $nombre = '';
     public $serial = '';
     public $compra = '';
@@ -43,7 +46,7 @@ class EquipoLivewire extends Component
         $this->reset();
         //modal de mensaje
         $this->modalMensaje = true;
-        session()->flash('message', 'Usuario creado exitoxamente.');
+        session()->flash('message', 'Equipo creado exitoxamente.');
     }
 
     //funciones para el modal de eliminacion
@@ -60,7 +63,7 @@ class EquipoLivewire extends Component
         //cerrar modal despues de la accion
         $this->cerrarModal();
         //modal de mensaje
-    
+
         // Mensaje de éxito
         session()->flash('message', 'Equipo eliminado exitosamente.');
         $this->reset();
@@ -148,6 +151,28 @@ class EquipoLivewire extends Component
     {
         $this->modalMensaje = false;
     }
+
+    //buscar un usuario
+    public function searchProduct()
+    {
+        if ($this->search == true) {
+            $this->results = Usuario::where('nombre', 'like', '%' . $this->search . '%')->take(5)->get();
+            $this->showlist = true;
+        } else {
+            $this->showlist = false;
+        }
+    }
+
+
+    public function resetBusqueda()
+    {
+        $this->reset([
+            'search',
+
+        ]);
+    }
+
+    
 
 
 

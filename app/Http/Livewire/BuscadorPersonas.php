@@ -19,7 +19,7 @@ class BuscadorPersonas extends Component
     public $search = '';
     public $results = [];
     public $showlist = false;
-    public $equipo;
+    public $usuario;
     public $nombre;
     public $apellido;
     public $documento;
@@ -47,7 +47,7 @@ class BuscadorPersonas extends Component
 
     public function getProduct($id)
     {
-        $this->equipo = Usuario::find($id);
+        $this->usuario = Usuario::find($id);
         $this->showlist = false;
     }
 

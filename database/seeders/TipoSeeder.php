@@ -8,25 +8,56 @@ use Illuminate\Database\Seeder;
 
 class TipoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        //
+        //Sedeer con los tipos de equipos de la compañia
         Tipo::create([
-            'id'=> 1,
+          
             'tipo' => 'Portatil',    
         ]);
         Tipo::create([
-            'id'=> 2,
+         
             'tipo' => 'Escritorio',    
         ]);
         Tipo::create([
-            'id'=> 3,
+            
             'tipo' => 'Servidor',    
         ]);
+        Tipo::create([
+            
+            'tipo' => 'Periferico de impresion',    
+        ]);
+        Tipo::create([
+           
+            'tipo' => 'Escaner de mano',    
+        ]);
+        Tipo::create([
+           
+            'tipo' => 'Escaner de mesa',    
+        ]);
+        Tipo::create([
+            
+            'tipo' => 'Celular',    
+        ]);
+        Tipo::create([
+           
+            'tipo' => 'Monitor',    
+        ]);
+        Tipo::create([
+           
+            'tipo' => 'Bascula',    
+        ]);
+        Tipo::create([
+            
+            'tipo' => 'Pda',    
+        ]);
+     
+        Tipo::create([
+           
+            'tipo' => 'Anillo',    
+        ]);
+        
+
     }
 }

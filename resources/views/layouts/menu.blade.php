@@ -50,23 +50,24 @@
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
             aria-expanded="false">Usuarios del sistema</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ Route('listadoUsuarios.index') }}">Listado</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="{{ Route('user-index') }}">Registrar usuario</a></li>
+            
+         
+            <li><a class="dropdown-item" href="{{ Route('user-index') }}">Gestionar </a></li>
             </div>
-
-
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="{{ Route('buscar.persona') }}">Buscador</a></li>
-
-
         </ul>
     </li>
     <li class="nav-item">
-        <a class="nav-link disabled" aria-disabled="true">Usuario:{{ Auth::user()->name }}</a>
+        <a class="nav-link disabled text-lg font-bold text-gray-700 mb-2" aria-disabled="true">Usuario  {{ Auth::user()->name }}</a>
     </li>
+    <li class="nav-item">
+        <form method="POST" action="{{ route('logout') }}" x-data>
+            @csrf
+            <x-dropdown-link href="{{ route('logout') }}"
+                     @click.prevent="$root.submit();">
+                     <h4 class="text-lg font-bold text-gray-700 mb-2">Salir</h4>
+            </x-dropdown-link>
+        </form>
+    </li>
+    
+
 </ul>

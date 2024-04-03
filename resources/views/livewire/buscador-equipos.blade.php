@@ -18,6 +18,12 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Asignado:
                                 </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                   Condicion:
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Tipo:
+                                </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">
                                     Serial
                                 </th>
@@ -46,11 +52,13 @@
                                             {{ $result->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
-                                            
                                             {{ $result->usuario ? $result->usuario->nombre : 'Equino no asignado' }}
-                                           
-                                          
-                                           
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
+                                            {{ $result->usuario ? $result->condicion->condicion : 'Equino no asignado' }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
+                                            {{ $result->usuario ? $result->tipo->tipo : 'Equino no asignado' }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $result->serial }}

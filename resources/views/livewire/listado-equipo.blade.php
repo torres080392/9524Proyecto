@@ -27,7 +27,7 @@
                     <th class="px-4 py-2">Fecha de compra</th>
                     <th class="px-4 py-2">Fecha incio garantia</th>
                     <th class="px-4 py-2">Fecha final garantia</th>
-                    <th class="px-4 py-2">Acciones</th>
+              
                 </tr>
             </thead>
             <tbody>
@@ -45,11 +45,6 @@
                         <td class="border px-4 py-2">{{ \DateTime::createFromFormat('Y-m-d H:i:s', $equipo->garatiaFinal)->format('Y-m-d') }}</td>
                         </td>
 
-                        <td class="border px-4 py-2">
-                            <a href="{{ route('equipo.editar', ['id' => $equipo->id]) }}" class="btn btn-sm btn-warning">Editar Equipo</a>
-
-                            <button wire:click="delete({{ $equipo->id }})" class="px-4 py-2 bg-dark text-white rounded-md shadow-md hover:bg-black">Eliminar</button>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -16,16 +16,72 @@ class CargoSeeder extends Seeder
     public function run()
     {
         Cargo::create([
-            'id'=> 1,
+         
             'cargo' => 'Consultor SAP',    
         ]);
         Cargo::create([
-            'id'=> 2,
+       
             'cargo' => 'Contador',    
         ]);
         Cargo::create([
-            'id'=> 3,
-            'cargo' => 'Gerente Administrativo',    
+        
+            'cargo' => 'Gerente ',    
+        ]);
+        Cargo::create([
+       
+            'cargo' => 'Aprendiz SENA',    
+        ]);
+        Cargo::create([
+         
+            'cargo' => 'Director ',    
+        ]);
+        Cargo::create([
+      
+            'cargo' => 'Coordinador',    
+        ]);
+        Cargo::create([
+        
+            'cargo' => 'Supervisor',    
+        ]);
+        Cargo::create([
+         
+            'cargo' => 'Vendedor',    
+        ]);
+        Cargo::create([
+        
+            'cargo' => 'Auxiliar',    
+        ]);
+        Cargo::create([
+          
+            'cargo' => 'Operario',    
+        ]);
+        Cargo::create([
+          
+            'cargo' => 'Analista',    
+        ]);
+        Cargo::create([
+          
+            'cargo' => 'Auditor',    
+        ]);
+        Cargo::create([
+     
+            'cargo' => 'Practicante',    
+        ]);
+        Cargo::create([
+       
+            'cargo' => 'Jefe de area',    
+        ]);
+        Cargo::create([
+       
+            'cargo' => 'Recepcionista',    
+        ]);
+        Cargo::create([
+          
+            'cargo' => 'Mensajero',    
+        ]);
+        Cargo::create([
+          
+            'cargo' => 'Visitante',    
         ]);
     }
 }

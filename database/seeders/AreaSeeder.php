@@ -8,24 +8,60 @@ use Illuminate\Database\Seeder;
 
 class AreaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         Area::create([
-            'id'=> 1,
+           
             'Area' => 'Sistemas',    
         ]);
         Area::create([
-            'id'=> 2,
+          
             'Area' => 'Contabilad',    
         ]);
         Area::create([
-            'id'=> 3,
+      
             'Area' => 'Credito',    
+        ]);
+        Area::create([
+       
+            'Area' => 'Administracion',    
+        ]);
+        Area::create([
+          
+            'Area' => 'Ventas',    
+        ]);
+        Area::create([
+           
+            'Area' => 'Centro de servicio',    
+        ]);
+        Area::create([
+       
+            'Area' => 'Talento Humano',    
+        ]);
+        Area::create([
+          
+            'Area' => 'Almacen',    
+        ]);
+        Area::create([
+         
+            'Area' => 'Seguridad',    
+        ]);
+        Area::create([
+         
+            'Area' => 'Auditoria',    
+        ]);
+        Area::create([
+           
+            'Area' => 'Sistemas Mexico',    
+        ]);
+        Area::create([
+           
+            'Area' => 'Sistemas Colombia Bogota',    
+        ]);
+        Area::create([
+           
+            'Area' => 'Sistemas Colombia Barranquilla',    
         ]);
     }
 }

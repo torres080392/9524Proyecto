@@ -18,11 +18,11 @@ class EstadoSeeder extends Seeder
         //
 
         Estado::create([
-            'id' => 1,
+           
             'Estado' => 'Activo',
         ]);
         Estado::create([
-            'id' => 2,
+          
             'Estado' => 'Inactivo',
         ]);
     }

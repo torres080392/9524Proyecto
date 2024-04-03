@@ -14,7 +14,7 @@
 
     @livewireStyles
 
-    @vite(['resources/css/menu.css']);
+    @vite(['resources/css/menu.css'])
 
 </head>
 @include('layouts.menu')</br></br>

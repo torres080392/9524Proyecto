@@ -14,8 +14,8 @@
     </script>
     @livewireStyles
 
-    @vite(['resources/css/menu.css']);
-    @vite(['resources/css/formUsuarios.css']);
+    @vite(['resources/css/menu.css'])
+    @vite(['resources/css/formUsuarios.css'])
 </head>
 @include('layouts.menu')</br></br>
 

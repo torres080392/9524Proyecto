@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
       //  Usuario::factory()->count(0)->create();
       //  Equipo::factory()->count(100)->create();
-        User::factory()->count(20)->create();
+       // User::factory()->count(20)->create();
       
     }
 
