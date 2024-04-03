@@ -20,9 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('tipo_id');
             $table->string('nombre');
             $table->string('serial');
-            $table->dateTime('compra'); // Valor predeterminado: fecha y hora actual
-            $table->dateTime('garatiaInicial'); // Valor predeterminado: fecha y hora actual
-            $table->dateTime('garatiaFinal'); 
+            $table->dateTime('compra')->nullable(); // Valor predeterminado: fecha y hora actual
+            $table->dateTime('garatiaInicial')->nullable(); // Valor predeterminado: fecha y hora actual
+            $table->dateTime('garatiaFinal')->nullable(); 
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('set null');
             $table->foreign('condicion_id')->references('id')->on('condicions')->onUpdate('cascade');
             $table->foreign('tipo_id')->references('id')->on('tipos')->onUpdate('cascade');

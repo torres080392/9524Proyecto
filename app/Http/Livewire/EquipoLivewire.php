@@ -108,36 +108,38 @@ class EquipoLivewire extends Component
 
     public function update($id)
     {
+        // Obtener el equipo que se está actualizando
+        $equipo = Equipo::findOrFail($id);
 
-        // Obtener el usuario que se está actualizando
-        $usuario = Equipo::findOrFail($id);
+        // Formatear las fechas correctamente en el formato YYYY-MM-DD
+        // Formatear las fechas en el formato YYYY-MM-DD
+        $compra = date('Y-m-d', strtotime($this->compra));
+        $garatiaInicial = date('Y-m-d', strtotime($this->garatiaInicial));
+        $garatiaFinal = date('Y-m-d', strtotime($this->garatiaFinal));
 
-        // Actualizar los campos del usuario basado en los datos del formulario
-        $usuario->usuario_id = $this->usuario_id;
-        $usuario->condicion_id = $this->condicion_id;
-        $usuario->tipo_id = $this->tipo_id;
-        $usuario->nombre = $this->nombre;
-        $usuario->serial = $this->serial;
-        $usuario->compra = $this->compra;
-        $usuario->garatiaInicial = $this->garatiaInicial;
-        $usuario->garatiaFinal = $this->garatiaFinal;
-
-
-        // Actualiza otros campos aquí si es necesario
+        // Actualizar los campos del equipo basado en los datos del formulario
+        $equipo->usuario_id = $this->usuario_id;
+        $equipo->condicion_id = $this->condicion_id;
+        $equipo->tipo_id = $this->tipo_id;
+        $equipo->nombre = $this->nombre;
+        $equipo->serial = $this->serial;
+        $equipo->compra = $compra;
+        $equipo->garatiaInicial = $garatiaInicial;
+        $equipo->garatiaFinal = $garatiaFinal;
 
         // Guardar los cambios en la base de datos
-        $usuario->save();
+        $equipo->save();
 
         // Cerrar el modal de actualización
         $this->cerrarModalAct();
 
         // Limpiar los campos del formulario
         $this->reset();
-        //modal de mensaje
-        $this->modalMensaje = true;
+
         // Mostrar un mensaje de éxito
         session()->flash('message', 'Equipo actualizado exitosamente.');
     }
+
 
     //cierra el modal 
     public function cerrarModalAct()
@@ -172,7 +174,7 @@ class EquipoLivewire extends Component
         ]);
     }
 
-    
+
 
 
 
