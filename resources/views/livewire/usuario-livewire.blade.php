@@ -125,7 +125,23 @@
                                         <td>{{ $usuario->id }}</td>
                                         <td>{{ $usuario->apellido }}</td>
                                         <td>{{ $usuario->documento }}</td>
-                                        <td>{{ $usuario->estado ? $usuario->estado->estado : 'N/A' }}</td>
+                                        <td>     <div class="form-check form-switch">
+                                            @switch($usuario->estado_id)
+                                                @case(1)
+                                                    <input wire:click="estado({{ $usuario->id }})" class="form-check-input" type="checkbox" role="switch"
+                                                        id="estado_id" checked>
+                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
+                                                @break
+                                    
+                                                @case(2)
+                                                    <input wire:click="estado2({{ $usuario->id}})" class="form-check-input" type="checkbox" role="switch"
+                                                        id="estado_id">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Inactivo</label>
+                                                @break
+                                    
+                                                @default
+                                            @endswitch
+                                        </div></td>
                                         <td><button wire:click="abrirModalAct({{ $usuario->id }})"
                                                 class="btn btn-sm btn-warning">Modificar </button></td>
                                         <td><button wire:click="abrirModal({{ $usuario->id }})"

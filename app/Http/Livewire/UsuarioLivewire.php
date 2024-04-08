@@ -142,6 +142,25 @@ class UsuarioLivewire extends Component
         // Mostrar un mensaje de éxito
         session()->flash('message', 'Usuario actualizado exitosamente.');
     }
+    
+
+    public function estado($id)
+    { 
+        $usuario = Usuario::findOrFail($id);
+            $usuario->estado_id = 2 ;
+            $usuario->save();
+            $this->reset();
+            
+           
+    }
+    public function estado2($id)
+    { 
+        $usuario = Usuario::findOrFail($id);
+            $usuario->estado_id = 1 ;
+            $usuario->save();
+            $this->reset();
+    }
+
 
 
     public function cerrarModalAct()
