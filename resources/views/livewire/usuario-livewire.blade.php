@@ -1,5 +1,5 @@
 <div class="container mt-0">
-    
+
     <div class="container">
         <div class="row">
             <!-- Formulario -->
@@ -10,14 +10,16 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="nombre" class="form-label">Nombre:</label>
-                                <input wire:model="nombre" type="text" id="nombre" name="nombre" class="form-control" required>
+                                <input wire:model="nombre" type="text" id="nombre" name="nombre"
+                                    class="form-control" required>
                                 @error('nombre')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="apellido" class="form-label">Apellido:</label>
-                                <input wire:model="apellido" id="apellido" name="apellido" class="form-control" required>
+                                <input wire:model="apellido" id="apellido" name="apellido" class="form-control"
+                                    required>
                                 @error('apellido')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -26,14 +28,16 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="documento" class="form-label">Documento:</label>
-                                <input wire:model='documento' type="text" id="documento" name="documento" class="form-control" required>
+                                <input wire:model='documento' type="text" id="documento" name="documento"
+                                    class="form-control" required>
                                 @error('documento')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="telefono" class="form-label">Telefono:</label>
-                                <input wire:model="telefono" type="text" id="telefono" name="telefono" class="form-control" required>
+                                <input wire:model="telefono" type="text" id="telefono" name="telefono"
+                                    class="form-control" required>
                                 @error('telefono')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -42,14 +46,16 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="correo" class="form-label">Correo:</label>
-                                <input wire:model="correo" type="email" id="correo" name="correo" class="form-control" required>
+                                <input wire:model="correo" type="email" id="correo" name="correo"
+                                    class="form-control" required>
                                 @error('correo')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="direccion" class="form-label">Direccion:</label>
-                                <input wire:model="direccion" type="text" id="direccion" name="direccion" class="form-control" required>
+                                <input wire:model="direccion" type="text" id="direccion" name="direccion"
+                                    class="form-control" required>
                                 @error('direccion')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -58,7 +64,8 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="cargo" class="form-label">Cargo:</label>
-                                <select wire:model="cargo_id" id="cargo" name="cargo" class="form-select" required>
+                                <select wire:model="cargo_id" id="cargo" name="cargo" class="form-select"
+                                    required>
                                     <option value="">Seleccionar cargo</option>
                                     @foreach ($cargos as $cargo)
                                         <option value="{{ $cargo->id }}">{{ $cargo->cargo }}</option>
@@ -90,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row justify-content-center">
                         <div class="col-md-3 mb-3">
                             <button type="submit" class="btn btn-primary w-100">
@@ -100,7 +107,7 @@
                     </div>
                 </form>
             </div>
-    
+
             <!-- Listado -->
             <div class="col-md-6 mt-4">
                 <div class="mt-6">
@@ -123,25 +130,31 @@
                                 @foreach ($usuarios as $usuario)
                                     <tr>
                                         <td>{{ $usuario->id }}</td>
-                                        <td>{{ $usuario->apellido }}</td>
+                                        <td>{{ $usuario->nombre }}</td>
                                         <td>{{ $usuario->documento }}</td>
-                                        <td>     <div class="form-check form-switch">
-                                            @switch($usuario->estado_id)
-                                                @case(1)
-                                                    <input wire:click="estado({{ $usuario->id }})" class="form-check-input" type="checkbox" role="switch"
-                                                        id="estado_id" checked>
-                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
-                                                @break
-                                    
-                                                @case(2)
-                                                    <input wire:click="estado2({{ $usuario->id}})" class="form-check-input" type="checkbox" role="switch"
-                                                        id="estado_id">
-                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Inactivo</label>
-                                                @break
-                                    
-                                                @default
-                                            @endswitch
-                                        </div></td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                @switch($usuario->estado_id)
+                                                    @case(1)
+                                                        <input wire:click="estado({{ $usuario->id }})"
+                                                            class="form-check-input" type="checkbox" role="switch"
+                                                            id="estado_id" checked>
+                                                        <label class="form-check-label"
+                                                            for="flexSwitchCheckChecked">Activo</label>
+                                                    @break
+
+                                                    @case(2)
+                                                        <input wire:click="estado2({{ $usuario->id }})"
+                                                            class="form-check-input" type="checkbox" role="switch"
+                                                            id="estado_id">
+                                                        <label class="form-check-label"
+                                                            for="flexSwitchCheckDefault">Inactivo</label>
+                                                    @break
+
+                                                    @default
+                                                @endswitch
+                                            </div>
+                                        </td>
                                         <td><button wire:click="abrirModalAct({{ $usuario->id }})"
                                                 class="btn btn-sm btn-warning">Modificar </button></td>
                                         <td><button wire:click="abrirModal({{ $usuario->id }})"
@@ -159,38 +172,38 @@
             </div>
         </div>
     </div>
-    
-        <!-- Modal de confirmación de eliminacion -->
+
+    <!-- Modal de confirmación de eliminacion -->
     <!-- Modal de confirmación de eliminación -->
-@if ($modalAbierto)
-<div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Confirmar Eliminación</h5>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar el usuario con el documento  {{ $usuarioId->documento }}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        wire:click="cerrarModal">Cancelar
-                </button>
-                <button type="button" class="btn btn-danger"
-                        wire:click="eliminarUsuario({{ $usuarioId->id }})">Eliminar
-                </button>
+    @if ($modalAbierto)
+        <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmar Eliminación</h5>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de que deseas eliminar el usuario con el documento {{ $usuarioId->documento }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            wire:click="cerrarModal">Cancelar
+                        </button>
+                        <button type="button" class="btn btn-danger"
+                            wire:click="eliminarUsuario({{ $usuarioId->id }})">Eliminar
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-@endif
+    @endif
 
 
 
 
-        <!-- Modal de confirmación de actualizacion -->
+    <!-- Modal de confirmación de actualizacion -->
 
-        @if ($modalActualizar)
+    @if ($modalActualizar)
         <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -204,60 +217,56 @@
                             enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input wire:model="nombre" value="{{ $usuarioSeleccionado->nombre }}" type="text" id="nombre" name="nombre" class="form-control" required>
+                                <input wire:model="nombre" value="{{ $usuarioSeleccionado->nombre }}" type="text"
+                                    id="nombre" name="nombre" class="form-control" required>
                                 @error('nombre')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="apellido"
-                                    class="form-label">Apellido:</label>
-                                <input wire:model="apellido" value="{{ $usuarioSeleccionado->apellido }}" id="apellido" name="apellido" class="form-control"
-                                    required>
+                                <label for="apellido" class="form-label">Apellido:</label>
+                                <input wire:model="apellido" value="{{ $usuarioSeleccionado->apellido }}"
+                                    id="apellido" name="apellido" class="form-control" required>
                                 @error('apellido')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="documento"
-                                    class="form-label">Documento:</label>
-                                <input wire:model='documento' value="{{ $usuarioSeleccionado->documento }}" type="text" id="documento" name="documento"
-                                    class="form-control" required>
+                                <label for="documento" class="form-label">Documento:</label>
+                                <input wire:model='documento' value="{{ $usuarioSeleccionado->documento }}"
+                                    type="text" id="documento" name="documento" class="form-control" required>
                                 @error('documento')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="telefono"
-                                    class="form-label">Teléfono:</label>
-                                <input wire:model="telefono" value="{{ $usuarioSeleccionado->telefono }}" type="text" id="telefono" name="telefono"
-                                    class="form-control" required>
+                                <label for="telefono" class="form-label">Teléfono:</label>
+                                <input wire:model="telefono" value="{{ $usuarioSeleccionado->telefono }}"
+                                    type="text" id="telefono" name="telefono" class="form-control" required>
                                 @error('telefono')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="correo"
-                                    class="form-label">Correo:</label>
-                                <input wire:model="correo" value="{{ $usuarioSeleccionado->correo }}" type="text" id="correo" name="correo"
-                                    class="form-control" required>
+                                <label for="correo" class="form-label">Correo:</label>
+                                <input wire:model="correo" value="{{ $usuarioSeleccionado->correo }}" type="text"
+                                    id="correo" name="correo" class="form-control" required>
                                 @error('correo')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="direccion"
-                                    class="form-label">Direccion:</label>
-                                <input wire:model="direccion" value="{{ $usuarioSeleccionado->direccion }}" type="text" id="direccion" name="direccion"
-                                    class="form-control" required>
+                                <label for="direccion" class="form-label">Direccion:</label>
+                                <input wire:model="direccion" value="{{ $usuarioSeleccionado->direccion }}"
+                                    type="text" id="direccion" name="direccion" class="form-control" required>
                                 @error('direccion')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-9 mb-6">
-                                
+
                                 <label for="cargo" class="form-label">Cargo actual:</label>
-                                <select wire:model="cargo_id"  id="cargo" name="cargo" class="form-select"
+                                <select wire:model="cargo_id" id="cargo" name="cargo" class="form-select"
                                     required>
                                     <option value="">Seleccionar cargo</option>
                                     @foreach ($cargos as $cargo)
@@ -269,7 +278,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-9 mb-6">
-                               
+
                                 <label for="area_id" class="form-label">Área actual:</label>
                                 <select wire:model="area_id" id="area" class="form-select">
                                     <option value="">Selecciona un área</option>
@@ -279,7 +288,7 @@
                                 </select>
                             </div>
                             <div class="col-md-9 mb-6">
-                               
+
                                 <label for="estado_id" class="form-label">Estado
                                     actual:</label>
                                 <select wire:model="estado_id" id="estado" class="form-select">
@@ -300,32 +309,33 @@
                 </div>
             </div>
         </div>
-        @endif
+    @endif
 
-        <!-- Modal de mensajes -->
+    <!-- Modal de mensajes -->
 
-        @if ($modalMensaje)
-    <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Mensaje de éxito</h5>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        @if (session()->has('message'))
-                            <div class="btn btn-sm btn-warning" role="alert">
-                                {{ session('message') }}
-                            </div>
-                        @endif
+    @if ($modalMensaje)
+        <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje de éxito</h5>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click="cerrarModalMensaje">Cerrar</button>
+                    <div class="modal-body">
+                        <div>
+                            @if (session()->has('message'))
+                                <div class="btn btn-sm btn-warning" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            wire:click="cerrarModalMensaje">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endif
+    @endif
 
-    </div>
+</div>

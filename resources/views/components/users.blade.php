@@ -27,5 +27,5 @@
 
 
 
-    @include('layouts.footer')
+    
     @livewireScripts

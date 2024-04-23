@@ -73,7 +73,7 @@
                                
                                 <td>
                                     <button wire:click="edit({{ $user->id }})" class="btn btn-sm btn-warning">Editar</button>
-                                    <button wire:click="update({{ $user->id }})" class="btn btn-sm btn-warning">Actualizar</button>
+                                    <button wire:click="update({{ $user->id }})" class="btn btn-sm btn-success">Aplicar</button>
                                     <button wire:click="abrirModal({{ $user->id }})" class="btn btn-sm btn-dark">Eliminar</button>
                                 </td>
                             </tr>

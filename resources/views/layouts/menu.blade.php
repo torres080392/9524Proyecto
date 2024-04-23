@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
 
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">95/24Colombia SAS</a>
+        <a class="nav-link active" aria-current="page" href="{{ Route('dashboard') }}">95/24Colombia SAS</a>
 
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -42,6 +42,23 @@
                 <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="{{ Route('buscar.persona') }}">Buscador</a></li>
+
+
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Facturas</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ Route('factura-index') }}">Crear factura</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Proveedores</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Listado</a></li>
 
 
         </ul>

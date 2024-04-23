@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Usuario;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Equipo;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return view('welcome');})->name('welcome');
@@ -20,8 +20,9 @@ Route::get('/equipos/buscar', [EquipoController::class, 'buscarEquipo'])->name('
 Route::get('/personas/buscar', [UsuarioController::class, 'buscarPersona'])->name('buscar.persona');
 Route::get('/personas/buscar', [UsuarioController::class, 'buscarPersona'])->name('buscar.persona');
 Route::get('/user', [ UserController::class, 'index'])->name('user-index');
-
-
+Route::get('/facture', [ FacturaController::class, 'index'])->name('factura-index');
+Route::get('/pdfFactura/{id}', [ FacturaController::class, 'generarPDF'])->name('pfd-factura');
 
 
 });
+

@@ -25,6 +25,8 @@ class EquipoLivewire extends Component
     public $tipo_id = '';
     public $actualizando = '';
     public $modalMensaje = false; //modal de mensaje
+ 
+
 
     public function crearEquipo()
     {

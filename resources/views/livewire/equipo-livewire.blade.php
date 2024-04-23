@@ -11,6 +11,7 @@
                             <select wire:model="usuario_id" id="usuario" name="usuario"
                                 class="form-select p-2 border rounded" required>
                                 <option value="">Seleccionar usuario</option>
+                              
                                 @foreach ($usuarios as $usuario)
                                     <option value="{{ $usuario->id }}">{{ $usuario->nombre }}</option>
                                 @endforeach
