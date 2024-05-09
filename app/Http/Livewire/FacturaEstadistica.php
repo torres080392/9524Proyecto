@@ -20,6 +20,7 @@ class FacturaEstadistica extends Component
         $facturaPagada = Pago::count();
 
         $deben = $factura - $facturaPagada ;
+        
         return view('livewire.factura-estadistica', compact('factura','facturaPagada','facturasHoy','deben'));
     }
 }

@@ -19,16 +19,24 @@ class UsersLivewire extends Component
 
     public function createUser()
     {
+ // Buscar un usuario por su dirección de correo electrónico
+ $userExistente = User::where('email', $this->email)->first();
 
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password),
-        ]);
+ if ($userExistente) {
+     session()->flash('message', 'Este correo ya está en uso');
+ } else {
+     // Crear un nuevo usuario si el correo electrónico no está registrado
+     User::create([
+         'name' => $this->name,
+         'email' => $this->email,
+         'password' => Hash::make($this->password),
+     ]);
 
-        // Limpiar los campos después de guardar
-        $this->reset();
-        session()->flash('message', 'Usuario creado exitosamente.');
+     // Limpiar los campos después de guardar
+     $this->reset();
+     session()->flash('message', 'Usuario creado exitosamente.');
+ }
+      
     }
 
 
