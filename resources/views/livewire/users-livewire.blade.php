@@ -89,7 +89,7 @@
 
     <!-- Livewire Component View (tu-componente.blade.php) -->
 <div>
-    <button wire:click="abrirModal">Eliminar Usuario</button>
+ 
 
     @if ($modalAbierto)
     @foreach ($users as $user)
@@ -124,4 +124,31 @@
     @endif
 </div>
 
+
+@if ($actu)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Después de actualizar los datos, oprime el botón "Aplicar" para que se efectúen los cambios.</p>
+        </div>
+        <div class="modal-footer">
+            <button wire:click="cerraModalAct" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Entendido
+              </button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endif
+
+
+
+
 </div>
+

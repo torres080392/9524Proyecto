@@ -16,6 +16,7 @@ class UsersLivewire extends Component
     public $password = '';
     public $password_confirmation = '';
     public $actualizando;
+    public $actu = false ;
 
     public function createUser()
     {
@@ -39,6 +40,10 @@ class UsersLivewire extends Component
       
     }
 
+    public function cerraModalAct(){
+        $this->actu = false;
+    }
+
 
 
     public function delete($id)
@@ -59,6 +64,9 @@ class UsersLivewire extends Component
 
         $this->actualizando = true; // Cambia a modo actualización
         session()->flash('message', ' El Id del usuario que va actualizar es el  .' . $id);
+
+
+        $this->actu = true;
     }
 
     public function update($id)
